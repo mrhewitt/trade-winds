@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ship" load_steps=2 format=3 uid="uid://knprr1ngygi1"]
+
+[ext_resource type="Script" uid="uid://defl5f867eswn" path="res://resources/ships/ship.gd" id="1_712ht"]
+
+[resource]
+script = ExtResource("1_712ht")
+type = "Cutter"
+min_crew = 1
+max_crew = 5
+cargo = 10
+price = 100
+metadata/_custom_type_script = "uid://defl5f867eswn"

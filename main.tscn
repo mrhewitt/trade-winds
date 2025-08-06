@@ -1,0 +1,782 @@
+[gd_scene load_steps=35 format=3 uid="uid://dqqfqe736to27"]
+
+[ext_resource type="FontFile" uid="uid://tge1f5815m1m" path="res://assets/fonts/TradeWinds-Regular.ttf" id="1_ig7tw"]
+[ext_resource type="Theme" uid="uid://2ksb3ht14iux" path="res://trade_winds.tres" id="1_lquwl"]
+[ext_resource type="Script" uid="uid://bxdwtvugmpdaf" path="res://scripts/managers/game_manager.gd" id="2_7mycd"]
+[ext_resource type="Texture2D" uid="uid://rg6lok5m11f3" path="res://assets/menu/icon-newgame.png" id="3_efxa6"]
+[ext_resource type="Texture2D" uid="uid://ds2rwpb8rxw78" path="res://assets/2301.w026.n002.3046B.p1.3046.jpg" id="3_lquwl"]
+[ext_resource type="Texture2D" uid="uid://cxluqch5yujna" path="res://icon.svg" id="4_7mycd"]
+[ext_resource type="Texture2D" uid="uid://bpemle271c010" path="res://assets/menu/icon-save.png" id="4_dg77c"]
+[ext_resource type="Texture2D" uid="uid://udi1fsseavx" path="res://assets/menu/icon-load.png" id="5_ycdy4"]
+[ext_resource type="Script" uid="uid://dcbw6n1swpcjn" path="res://scripts/ui/fade.gd" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://bfhbjx1h23rpn" path="res://assets/menu/icon-exit.png" id="6_w48qg"]
+[ext_resource type="Texture2D" uid="uid://drvvxq7ucsmt3" path="res://assets/menu/icon-about.png" id="7_vivmo"]
+[ext_resource type="Script" uid="uid://co0pc40psjogt" path="res://scripts/ui/file.gd" id="7_ycdy4"]
+[ext_resource type="Script" uid="uid://cmqvjleyiqvfq" path="res://scripts/ui/settings.gd" id="8_w48qg"]
+[ext_resource type="Script" uid="uid://cojwbet3gar5n" path="res://scripts/ui/help.gd" id="10_w48qg"]
+[ext_resource type="Script" uid="uid://bbqjvfqtxj5yt" path="res://scripts/ui/counter.gd" id="11_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://t7agitelkv2o" path="res://assets/coin.png" id="12_yaehf"]
+[ext_resource type="Script" uid="uid://b7a3dwckrrdrt" path="res://scripts/managers/map_manager.gd" id="14_0odxb"]
+[ext_resource type="Script" uid="uid://c4se2ebc5ddew" path="res://scripts/managers/crew_manager.gd" id="14_d13ii"]
+[ext_resource type="Script" uid="uid://cu6grlvtbq8ir" path="res://scripts/managers/ship_manager.gd" id="14_getpj"]
+[ext_resource type="Texture2D" uid="uid://bmtrbul7410xb" path="res://assets/map.webp" id="15_lswn8"]
+[ext_resource type="Script" uid="uid://defl5f867eswn" path="res://resources/ships/ship.gd" id="15_ryguw"]
+[ext_resource type="Resource" uid="uid://knprr1ngygi1" path="res://resources/ships/cutter.tres" id="16_d13ii"]
+[ext_resource type="ButtonGroup" uid="uid://bw6fgnqrbjvwt" path="res://resources/port_button_group.tres" id="16_lswn8"]
+[ext_resource type="Resource" uid="uid://crsf3by27g2m2" path="res://resources/ships/ketch.tres" id="17_1u8w0"]
+[ext_resource type="Resource" uid="uid://cxdjs7cx2woyf" path="res://resources/ships/schooner.tres" id="18_0odxb"]
+[ext_resource type="Texture2D" uid="uid://cnbmtrwid21y3" path="res://assets/feather.png" id="19_ryguw"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_vivmo"]
+device = -1
+keycode = 78
+unicode = 110
+
+[sub_resource type="Shortcut" id="Shortcut_2cqfq"]
+events = [SubResource("InputEventKey_vivmo")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_yaehf"]
+device = -1
+keycode = 83
+unicode = 115
+
+[sub_resource type="Shortcut" id="Shortcut_074og"]
+events = [SubResource("InputEventKey_yaehf")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_cegan"]
+device = -1
+keycode = 76
+unicode = 108
+
+[sub_resource type="Shortcut" id="Shortcut_82xsv"]
+events = [SubResource("InputEventKey_cegan")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_getpj"]
+device = -1
+keycode = 88
+unicode = 120
+
+[sub_resource type="Shortcut" id="Shortcut_ryguw"]
+events = [SubResource("InputEventKey_getpj")]
+
+[node name="Game" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lquwl")
+script = ExtResource("2_7mycd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Top" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="MarginContainer/VBoxContainer/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="File" type="PopupMenu" parent="MarginContainer/VBoxContainer/Top/MenuBar"]
+unique_name_in_owner = true
+item_count = 4
+item_0/text = "New Game"
+item_0/icon = ExtResource("3_efxa6")
+item_0/id = 0
+item_1/text = "Save"
+item_1/icon = ExtResource("4_dg77c")
+item_1/id = 1
+item_2/text = "Load"
+item_2/icon = ExtResource("5_ycdy4")
+item_2/id = 2
+item_3/text = "Exit"
+item_3/icon = ExtResource("6_w48qg")
+item_3/id = 3
+script = ExtResource("7_ycdy4")
+_new_shortcut = SubResource("Shortcut_2cqfq")
+_save_shortcut = SubResource("Shortcut_074og")
+_load_shortcut = SubResource("Shortcut_82xsv")
+_exit_shortcut = SubResource("Shortcut_ryguw")
+
+[node name="Settings" type="PopupMenu" parent="MarginContainer/VBoxContainer/Top/MenuBar"]
+hide_on_checkable_item_selection = false
+item_count = 1
+item_0/text = "Mute"
+item_0/checkable = 1
+item_0/id = 0
+script = ExtResource("8_w48qg")
+
+[node name="Difficulty" type="PopupMenu" parent="MarginContainer/VBoxContainer/Top/MenuBar/Settings"]
+hide_on_checkable_item_selection = false
+item_count = 3
+item_0/text = "Easy"
+item_0/checkable = 2
+item_0/checked = true
+item_0/id = 0
+item_1/text = "Normal"
+item_1/checkable = 2
+item_1/id = 1
+item_2/text = "Hard"
+item_2/checkable = 2
+item_2/id = 2
+
+[node name="Help" type="PopupMenu" parent="MarginContainer/VBoxContainer/Top/MenuBar"]
+item_count = 3
+item_0/text = "About"
+item_0/icon = ExtResource("7_vivmo")
+item_0/id = 0
+item_1/text = "Support"
+item_1/id = 1
+item_1/separator = true
+item_2/text = "Github"
+item_2/id = 2
+script = ExtResource("10_w48qg")
+
+[node name="Gold" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("11_2cqfq")
+_resource_name = "gold"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/Gold"]
+layout_mode = 2
+texture = ExtResource("12_yaehf")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Top/Gold"]
+layout_mode = 2
+text = "9999999"
+
+[node name="Wood" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Top"]
+layout_mode = 2
+script = ExtResource("11_2cqfq")
+_resource_name = "wood"
+_maximum = 100
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Top/Wood"]
+layout_mode = 2
+texture = ExtResource("4_7mycd")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Top/Wood"]
+layout_mode = 2
+text = "9999999"
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Map" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+script = ExtResource("14_0odxb")
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Map"]
+layout_mode = 2
+
+[node name="Map" type="TextureRect" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("15_lswn8")
+expand_mode = 1
+
+[node name="Ports" type="Control" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Havana" type="CheckBox" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/Ports"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.301
+anchor_top = 0.277
+anchor_right = 0.301
+anchor_bottom = 0.277
+offset_left = -8.04004
+offset_top = -11.866
+offset_right = 75.96
+offset_bottom = 12.134
+disabled = true
+button_group = ExtResource("16_lswn8")
+text = "Havana
+"
+
+[node name="Kingston" type="CheckBox" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/Ports"]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.59
+anchor_top = 0.474
+anchor_right = 0.59
+anchor_bottom = 0.474
+offset_left = -7.60004
+offset_top = -12.092
+offset_right = 87.4
+offset_bottom = 11.908
+button_group = ExtResource("16_lswn8")
+text = "Kingston"
+
+[node name="Port-au-Prince" type="CheckBox" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/Ports"]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.452
+anchor_top = 0.41
+anchor_right = 0.452
+anchor_bottom = 0.41
+offset_left = -8.08002
+offset_top = -11.78
+offset_right = 137.92
+offset_bottom = 12.22
+button_pressed = true
+button_group = ExtResource("16_lswn8")
+text = "Port-au-Prince"
+
+[node name="SantoDomingo" type="CheckBox" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/Ports"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.664
+anchor_top = 0.465
+anchor_right = 0.664
+anchor_bottom = 0.465
+offset_left = -8.56006
+offset_top = -11.97
+offset_right = 135.44
+offset_bottom = 12.03
+button_group = ExtResource("16_lswn8")
+text = "Santo Domingo"
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -139.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.329412)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Days" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0 Days"
+
+[node name="EmbarkButton" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+disabled = true
+text = "Embark"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 21
+
+[node name="Anchor" type="CheckButton" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Anchor"
+flat = true
+
+[node name="VoyageProgress" type="ProgressBar" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+
+[node name="Sails" type="VSlider" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.5
+scrollable = false
+tick_count = 3
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Sails"
+
+[node name="Market" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Crew" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("14_d13ii")
+_edit_icon = ExtResource("19_ryguw")
+metadata/_tab_index = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/TabContainer/Crew"]
+layout_mode = 2
+
+[node name="MyCrew" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+column_titles_visible = true
+scroll_horizontal_enabled = false
+
+[node name="Captain" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree"]
+
+[node name="First Mate" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain"]
+
+[node name="Second Mate" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate"]
+
+[node name="Navigator" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Second Mate"]
+
+[node name="Helmsman" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Second Mate"]
+
+[node name="Barrelsman" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Second Mate"]
+
+[node name="Topmanx10" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Second Mate"]
+
+[node name="Seamanx15" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Second Mate"]
+
+[node name="Third Mate" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate"]
+
+[node name="Bosun" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Third Mate"]
+
+[node name="Carpenter" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Third Mate"]
+
+[node name="Surgeon" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Third Mate"]
+
+[node name="Gunner" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Third Mate"]
+
+[node name="Quartermaster" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate"]
+
+[node name="Cook" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Quartermaster"]
+
+[node name="Butcher" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Quartermaster"]
+
+[node name="Purser" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain/First Mate/Quartermaster"]
+
+[node name="Passengerx10" type="Node" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree/Captain"]
+
+[node name="FireButton" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Fire"
+
+[node name="ForHire" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/ForHire"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HireGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/ForHire/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="Role" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/ForHire/ScrollContainer/HireGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Role"
+horizontal_alignment = 1
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/ForHire/ScrollContainer/HireGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+horizontal_alignment = 1
+
+[node name="Pay" type="TextureRect" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/ForHire/ScrollContainer/HireGrid"]
+layout_mode = 2
+texture = ExtResource("12_yaehf")
+expand_mode = 3
+
+[node name="HireButton" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/ForHire"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Hire"
+
+[node name="Ship" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("14_getpj")
+_ships = Array[ExtResource("15_ryguw")]([ExtResource("16_d13ii"), ExtResource("17_1u8w0"), ExtResource("18_0odxb")])
+metadata/_tab_index = 3
+
+[node name="HBoxContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/TabContainer/Ship"]
+layout_mode = 2
+
+[node name="MyShipInfo" type="PanelContainer" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "My Ship"
+
+[node name="MyShipImage" type="TextureRect" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_7mycd")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Stats" type="GridContainer" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer/Stats"]
+layout_mode = 2
+text = "Name"
+
+[node name="NameValue" type="LineEdit" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer/Stats"]
+layout_mode = 2
+placeholder_text = "Name your ship"
+max_length = 24
+expand_to_text_length = true
+right_icon = ExtResource("19_ryguw")
+caret_blink = true
+
+[node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer/Stats"]
+layout_mode = 2
+text = "Type"
+
+[node name="TypeValue" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer/Stats"]
+layout_mode = 2
+text = "Type of ship goes here"
+
+[node name="CrewLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer/Stats"]
+layout_mode = 2
+text = "Crew"
+
+[node name="CrewValue" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer/Stats"]
+layout_mode = 2
+text = "Min - Max Crew"
+
+[node name="CargoLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer/Stats"]
+layout_mode = 2
+text = "Cargo"
+
+[node name="CargoValue" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer/Stats"]
+layout_mode = 2
+text = "### of tons"
+
+[node name="ShipsForSale" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Ships For Sale"
+
+[node name="OtherShipImage" type="TextureRect" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_7mycd")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Stats" type="GridContainer" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale/Stats"]
+layout_mode = 2
+text = "Type"
+
+[node name="TypeValue" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+fit_to_longest_item = false
+
+[node name="CrewLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale/Stats"]
+layout_mode = 2
+text = "Crew"
+
+[node name="CrewValue" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale/Stats"]
+layout_mode = 2
+text = "Min - Max Crew"
+
+[node name="CargoLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale/Stats"]
+layout_mode = 2
+text = "Cargo"
+
+[node name="CargoValue" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale/Stats"]
+layout_mode = 2
+text = "### of tons"
+
+[node name="CostLabel" type="TextureRect" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale/Stats"]
+layout_mode = 2
+texture = ExtResource("12_yaehf")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="CostValue" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale/Stats"]
+layout_mode = 2
+text = "99999"
+
+[node name="BuyButton" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Buy"
+
+[node name="About" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -108.0
+offset_right = 181.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="About"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="About/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Trade Windows v0.1
+Developed By Daddio Dragonslayer"
+
+[node name="Button" type="Button" parent="About/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"
+
+[node name="TitleScreen" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="TitleScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lquwl")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="TitleScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -214.0
+offset_top = -100.0
+offset_right = 214.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.333393, 0, 0.0941369, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_fonts/font = ExtResource("1_ig7tw")
+theme_override_font_sizes/font_size = 68
+text = "Trade Winds"
+
+[node name="Start" type="Button" parent="TitleScreen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.667
+anchor_right = 0.5
+anchor_bottom = 0.667
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start"
+icon = ExtResource("4_7mycd")
+
+[node name="Socials" type="VBoxContainer" parent="TitleScreen"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 267.0
+offset_bottom = 164.0
+theme_override_constants/separation = 12
+
+[node name="Website" type="LinkButton" parent="TitleScreen/Socials"]
+custom_minimum_size = Vector2(221, 52)
+layout_mode = 2
+size_flags_horizontal = 0
+uri = "http://www.lockartfalls.co.za"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen/Socials/Website"]
+layout_mode = 1
+offset_right = 221.0
+offset_bottom = 51.0
+
+[node name="Icon" type="TextureRect" parent="TitleScreen/Socials/Website/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_7mycd")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Handle" type="Label" parent="TitleScreen/Socials/Website/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Handle"
+text = "Visit Lockhart Falls
+"
+vertical_alignment = 1
+
+[node name="Website2" type="LinkButton" parent="TitleScreen/Socials"]
+custom_minimum_size = Vector2(221, 52)
+layout_mode = 2
+size_flags_horizontal = 0
+uri = "http://www.lockartfalls.co.za"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen/Socials/Website2"]
+layout_mode = 1
+offset_right = 221.0
+offset_bottom = 51.0
+
+[node name="Icon" type="TextureRect" parent="TitleScreen/Socials/Website2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_7mycd")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Handle" type="Label" parent="TitleScreen/Socials/Website2/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Handle"
+text = "Visit Lockhart Falls Is Veyr Veye long
+"
+vertical_alignment = 1
+
+[node name="Website3" type="LinkButton" parent="TitleScreen/Socials"]
+custom_minimum_size = Vector2(221, 52)
+layout_mode = 2
+size_flags_horizontal = 0
+uri = "http://www.lockartfalls.co.za"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen/Socials/Website3"]
+layout_mode = 1
+offset_right = 221.0
+offset_bottom = 51.0
+
+[node name="Icon" type="TextureRect" parent="TitleScreen/Socials/Website3/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_7mycd")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Handle" type="Label" parent="TitleScreen/Socials/Website3/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Handle"
+text = "Visit Lockhart Falls
+"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="TitleScreen"]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 22.0
+offset_right = 573.0
+offset_bottom = 100.0
+text = "Sample  TEXT
+with numbers
+0123456789"
+
+[node name="Fade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_7mycd")
+
+[connection signal="id_pressed" from="MarginContainer/VBoxContainer/Top/MenuBar/File" to="MarginContainer/VBoxContainer/Top/MenuBar/File" method="_on_id_pressed"]
+[connection signal="reset" from="MarginContainer/VBoxContainer/Top/MenuBar/File" to="MarginContainer/VBoxContainer/Top/MenuBar/Settings" method="_on_file_reset"]
+[connection signal="reset" from="MarginContainer/VBoxContainer/Top/MenuBar/File" to="MarginContainer/VBoxContainer/Top/Gold" method="update_counter"]
+[connection signal="reset" from="MarginContainer/VBoxContainer/Top/MenuBar/File" to="MarginContainer/VBoxContainer/Top/Wood" method="update_counter"]
+[connection signal="reset" from="MarginContainer/VBoxContainer/Top/MenuBar/File" to="MarginContainer/VBoxContainer/TabContainer/Ship" method="_on_file_reset"]
+[connection signal="reset" from="MarginContainer/VBoxContainer/Top/MenuBar/File" to="MarginContainer/VBoxContainer/TabContainer/Map" method="_on_file_reset"]
+[connection signal="reset" from="MarginContainer/VBoxContainer/Top/MenuBar/File" to="MarginContainer/VBoxContainer/TabContainer/Crew" method="_on_file_reset"]
+[connection signal="id_pressed" from="MarginContainer/VBoxContainer/Top/MenuBar/Settings" to="MarginContainer/VBoxContainer/Top/MenuBar/Settings" method="_on_id_pressed"]
+[connection signal="id_pressed" from="MarginContainer/VBoxContainer/Top/MenuBar/Settings/Difficulty" to="MarginContainer/VBoxContainer/Top/MenuBar/Settings" method="_on_difficulty_id_pressed"]
+[connection signal="id_pressed" from="MarginContainer/VBoxContainer/Top/MenuBar/Help" to="MarginContainer/VBoxContainer/Top/MenuBar/Help" method="_on_id_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/Ports/Havana" to="MarginContainer/VBoxContainer/TabContainer/Map" method="set_destination" binds= [0]]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/Ports/Kingston" to="MarginContainer/VBoxContainer/TabContainer/Map" method="set_destination" binds= [1]]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/Ports/Port-au-Prince" to="MarginContainer/VBoxContainer/TabContainer/Map" method="set_destination" binds= [2]]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/Ports/SantoDomingo" to="MarginContainer/VBoxContainer/TabContainer/Map" method="set_destination" binds= [3]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/Map/MarginContainer/EmbarkButton" to="MarginContainer/VBoxContainer/TabContainer/Map" method="_on_embark_button_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/HBoxContainer/Anchor" to="MarginContainer/VBoxContainer/TabContainer/Map" method="_on_anchor_toggled"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/TabContainer/Map/VBoxContainer/HBoxContainer/Sails" to="MarginContainer/VBoxContainer/TabContainer/Map" method="_on_sails_value_changed"]
+[connection signal="item_edited" from="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/Tree" to="MarginContainer/VBoxContainer/TabContainer/Crew" method="_on_tree_item_edited"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/MyCrew/FireButton" to="MarginContainer/VBoxContainer/TabContainer/Crew" method="_on_fire_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Crew/HSplitContainer/ForHire/HireButton" to="MarginContainer/VBoxContainer/TabContainer/Crew" method="_on_hire_button_pressed"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/MyShipInfo/VBoxContainer/Stats/NameValue" to="MarginContainer/VBoxContainer/TabContainer/Ship" method="_on_name_value_text_submitted"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale/Stats/TypeValue" to="MarginContainer/VBoxContainer/TabContainer/Ship" method="_on_type_value_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Ship/HBoxContainer/ShipsForSale/BuyButton" to="MarginContainer/VBoxContainer/TabContainer/Ship" method="_on_buy_button_pressed"]
+[connection signal="pressed" from="About/VBoxContainer/Button" to="About" method="hide"]
+[connection signal="pressed" from="TitleScreen/Start" to="." method="_on_start_pressed"]

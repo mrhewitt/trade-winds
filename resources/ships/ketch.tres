@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ship" load_steps=2 format=3 uid="uid://crsf3by27g2m2"]
+
+[ext_resource type="Script" uid="uid://defl5f867eswn" path="res://resources/ships/ship.gd" id="1_imlhq"]
+
+[resource]
+script = ExtResource("1_imlhq")
+type = "Ketch"
+min_crew = 2
+max_crew = 6
+cargo = 15
+price = 100
+metadata/_custom_type_script = "uid://defl5f867eswn"
